@@ -40,7 +40,7 @@ function initialPrompt() {
   return newWord.toUpperCase();
 };
 
-console.log(oldScrabbleScorer(initialPrompt()));
+//console.log(oldScrabbleScorer(initialPrompt()));
 
 let simpleScore = (usr) => usr.length;
 
@@ -93,21 +93,22 @@ const scoringAlgorithms = [
   {
     name: "scrabble",
     description: "Scrabble",
-    scorerFunction: scrabbleScore,
+    scorerFunction: scrabbleScorer,
   }
 ];
 
-function scorerPrompt(ss) {
+function scorerPrompt() {
+  const word=initialPrompt();
   let i = 0;
   let info = scoringAlgorithms.map(
     (e) => `${i++} ${e.name} : ${e.description}`
   );
   info = info.join("\n");
   console.log(info);
-  const num = input.question("Pick Algorihm : ");
-
-  console.log("Algorithm name: ", scoringAlgorithms[num].name);
-  console.log("ScorerFunction result: ", scoringAlgorithms[num].scorerFunction(ss));
+  const algName = input.question("Pick Algorihm : ");
+  
+  console.log("Algorithm name: ", scoringAlgorithms[algName].name);
+  console.log("ScorerFunction result: ", scoringAlgorithms[algName].scorerFunction(word));
 
 }
 
@@ -116,7 +117,11 @@ function transform(prm) {
   const newObj = {};
   for (let i of Object.entries(prm)) {
     for (let v of i[1]) {
-      newObj[v] = i[0];
+      try{ 
+        newObj[v] = parseInt(i[0])
+      } catch(err){ 
+        console.error(err);
+      }
     }
 
   }
@@ -133,29 +138,21 @@ let newPointStructure = transform(oldPointStructure);
 
 
 
-let scrabbleScorer = (word) => {
-  word = word.toLowerCase();
+function scrabbleScorer(word){
+  word = word.toUpperCase();
   let points = 0;
 
   for (let i of word) {
-    point += newPointStructure[i];
-
-
+    points += newPointStructure[i] || 0;
   }
   return points;
-
-
-
 
 }
 
 
 
 function runProgram() {
-
-  scorerPrompt(initialPrompt());
-
-
+  scorerPrompt();
 }
 
 // Don't write any code below this line //
