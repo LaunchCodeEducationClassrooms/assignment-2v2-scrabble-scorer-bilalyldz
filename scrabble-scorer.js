@@ -42,18 +42,20 @@ function initialPrompt() {
 
 //console.log(oldScrabbleScorer(initialPrompt()));
 
-let simpleScore = (usr) => usr.length;
+function simpleScore(word){ 
+  return word.length
+};
 
 //console.log(simpleScore("Bolal"));
 
 
-let vowelBonusScore = (usrA) => {
+function vowelBonusScore(word){
   let count = 0;
 
 
   let vowels = ["a", "e", "i", "o", "u"];
-  for (let i = 0; i < usrA.length; i++) {
-    if (vowels.includes(usrA[i]) === true) {
+  for (let i = 0; i < word.length; i++) {
+    if (vowels.includes(word[i]) === true) {
       count += 3;
       continue;
     }
@@ -64,7 +66,7 @@ let vowelBonusScore = (usrA) => {
 }
 //console.log(vowelBonusScore("bilal"));
 
-let scrabbleScore = (word) => {
+function scrabbleScore(word){
   word = word.toUpperCase();
   let points = 0;
 
@@ -80,22 +82,24 @@ let scrabbleScore = (word) => {
 
 
 const scoringAlgorithms = [
-  {
+ new Object( {
     name: "simple",
     description: "Simple Score",
     scorerFunction: simpleScore,
-  },
-  {
+  }),
+  
+  new Object({
     name: "vowel",
     description: "Bonus-vowels",
     scorerFunction: vowelBonusScore,
-  },
-  {
+  }),
+  new Object({
     name: "scrabble",
     description: "Scrabble",
     scorerFunction: scrabbleScorer,
-  }
+  })
 ];
+
 
 function scorerPrompt() {
   const word=initialPrompt();
