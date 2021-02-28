@@ -81,29 +81,25 @@ function scrabbleScore(word) {
 };
 
 
-// let scoringAlgorithms = new Object([
-//  new Object( {
-//     name: "simple",
-//     description: "Simple Score",
-//     scorerFunction: simpleScore,
-//   }),
+let scoringAlgorithms = new Object([
+ new Object( {
+    name: "simple",
+    description: "Simple Score",
+    scorerFunction: simpleScore,
+  }),
 
-//   new Object({
-//     name: "vowel",
-//     description: "Bonus-vowels",
-//     scorerFunction: vowelBonusScore,
-//   }),
-//   new Object({
-//     name: "scrabble",
-//     description: "Scrabble",
-//     scorerFunction: scrabbleScorer,
-//   })
-// ]);
-let scoringAlgorithms = [
-  Object({ name: 'simple', description: 'Simple Score', scoringFunction: simpleScore }), 
-  Object({ name: 'vowel', description: 'Bonus-vowels', scoringFunction: vowelBonusScore }), 
-  Object({ name: 'scrabble', description: 'Scrabble', scoringFunction: scrabbleScorer })
-  ]
+  new Object({
+    name: "vowel",
+    description: "Bonus-vowels",
+    scorerFunction: vowelBonusScore,
+  }),
+  new Object({
+    name: "scrabble",
+    description: "Scrabble",
+    scorerFunction: scrabbleScorer,
+  })
+]);
+
 
 
 function scorerPrompt() {
@@ -117,7 +113,7 @@ function scorerPrompt() {
   const algName = input.question("Pick Algorihm : ");
 
   console.log("Algorithm name: ", scoringAlgorithms[algName].name);
-  console.log("ScorerFunction result: ", scoringAlgorithms[algName].scoringFunction(word));
+  console.log("ScorerFunction result: ", scoringAlgorithms[algName].scorerFunction(word));
 
 }
 
@@ -170,6 +166,7 @@ module.exports = {
   scoringAlgorithms: scoringAlgorithms,
   newPointStructure: newPointStructure,
   runProgram: runProgram,
-  scorerPrompt: scorerPrompt
+  scorerPrompt: scorerPrompt, 
+  scoringFunction:()=>newPointStructure
 };
 
