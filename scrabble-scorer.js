@@ -44,7 +44,7 @@ console.log(oldScrabbleScorer(initialPrompt()));
 
 let simpleScore= (usr) => usr.length;
 
-console.log(simpleScore("Bolal"));
+//console.log(simpleScore("Bolal"));
 
 
 let vowelBonusScore= (usrA)=>{
@@ -62,7 +62,7 @@ count++;
 }
 return count;
 }
- console.log(vowelBonusScore("bilal"));
+ //console.log(vowelBonusScore("bilal"));
 
 let scrabbleScore = (word) => {
   word = word.toUpperCase();
@@ -111,38 +111,23 @@ console.log("ScorerFunction result: ", scoringAlgorithms[num].scorerFunction(a))
 
 }
 
-function transform() {
-
-a:1,
-e:1,
-o:1,
-u:1,
-i:1,
-l:1,
-n:1,
-r:1,
-s:1,
-t:1,
-g:2,
-d:2,
-b:3,
-c:3,
-m:3,
-p:3,
-f:4,
-h:4,
-v:4,
-w:4,
-y:4,
-k:5,
-j:8,
-x:8,
-q:10,
-z:10,
+function transform(prm) {
 
 
+const newObj={};
+for(let i of Object.entries(prm)){
+  for(let v of i[1]){
+    newObj[v]=i[0];
+  }
 
+}
+return newObj;
 };
+
+newObj=transform(oldPointStructure)
+console.log(newObj);
+//console.log(oldPointStructure);
+
 
 let newPointStructure;
 
