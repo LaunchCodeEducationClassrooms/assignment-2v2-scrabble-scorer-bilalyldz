@@ -81,7 +81,7 @@ function scrabbleScore(word){
 };
 
 
-const scoringAlgorithms = [
+const scoringAlgorithms = new Object([
  new Object( {
     name: "simple",
     description: "Simple Score",
@@ -98,7 +98,7 @@ const scoringAlgorithms = [
     description: "Scrabble",
     scorerFunction: scrabbleScorer,
   })
-];
+]);
 
 
 function scorerPrompt() {
