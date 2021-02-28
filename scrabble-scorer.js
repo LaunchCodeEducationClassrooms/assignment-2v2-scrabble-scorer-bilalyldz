@@ -37,7 +37,7 @@ function oldScrabbleScorer(word) {
 function initialPrompt() {
    console.log("Let's play some scrabble! Enter a word:");
    let newWord=input.question();
-   return newWord;
+   return newWord.toUpperCase();
 };
 
 console.log(oldScrabbleScorer(initialPrompt()));
@@ -51,7 +51,7 @@ let vowelBonusScore= (usrA)=>{
 let count=0;
  
  
-let vowels=["a","e","i","o","u"];
+let vowels=["A","E","I","O","U"];
 for(let i=0; i<usrA.length; i++){
   if(vowels.includes(usrA[i])===true){
     count+=3;
@@ -124,12 +124,12 @@ for(let i of Object.entries(prm)){
 return newObj;
 };
 
-newObj=transform(oldPointStructure)
+
 //console.log(newObj);
 //console.log(oldPointStructure);
 
 
-let newPointStructure= newObj;
+let newPointStructure= transform(oldPointStructure);
 
 function runProgram() {
   
