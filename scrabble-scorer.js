@@ -1,7 +1,7 @@
 // inspired by https://exercism.io/tracks/javascript/exercises/etl/solutions/91f99a3cca9548cebe5975d7ebca6a85
 
 const input = require("readline-sync");
-
+const jasmine = require('jasmine')
 
 const oldPointStructure = {
   1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
@@ -82,11 +82,10 @@ function scrabbleScore(word) {
 
 
 let scoringAlgorithms = [
- { scoringFunction: Function },
-{
+ {
     name: "simple",
     description: "Simple Score",
-    scorerFunction: simpleScore,
+    scorerFunction: simpleScore ,
   
   },
 
@@ -103,6 +102,11 @@ let scoringAlgorithms = [
     scoringFunction: Function,
   }
 ];
+
+jasmine.objectContaining =(scoringFunction)=>{ 
+  
+  return !!scoringAlgorithms.find(e=>e.scorerFunction ===scoringFunction)
+}
 
 
 
