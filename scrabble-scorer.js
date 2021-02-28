@@ -82,21 +82,24 @@ function scrabbleScore(word) {
 
 
 let scoringAlgorithms = [
- {
+  {
     name: "simple",
     description: "Simple Score",
-    scoringFunction: simpleScore ,
+    scorerFunction: simpleScore,
+    scoringFunction: simpleScore,
   },
 
   {
     name: "vowel",
     description: "Bonus-vowels",
-    scoringFunction: vowelBonusScore, 
+    scorerFunction: vowelBonusScore,
+    scoringFunction: vowelBonusScore,
   },
-   {
+  {
     name: "scrabble",
     description: "Scrabble",
-    scoringFunction: scrabbleScore,
+    scorerFunction: scrabbleScore,
+    scoringFunction:scrabbleScore,
   }
 ];
 
@@ -112,7 +115,10 @@ function scorerPrompt() {
   info = info.join("\n");
   console.log(info);
   const algName = input.question("Pick Algorihm : ");
-
+  if(!scoringAlgorithms[algName]){ 
+    scorerPrompt();
+    return ;
+  }
   console.log("Algorithm name: ", scoringAlgorithms[algName].name);
   console.log("ScorerFunction result: ", scoringAlgorithms[algName].scorerFunction(word));
 
