@@ -125,11 +125,11 @@ return newObj;
 };
 
 newObj=transform(oldPointStructure)
-console.log(newObj);
+//console.log(newObj);
 //console.log(oldPointStructure);
 
 
-let newPointStructure;
+let newPointStructure= newObj;
 
 function runProgram() {
   
