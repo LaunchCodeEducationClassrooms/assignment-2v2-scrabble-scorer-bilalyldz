@@ -85,20 +85,22 @@ let scoringAlgorithms = [
  {
     name: "simple",
     description: "Simple Score",
-    scorerFunction: Function ,
+    scoringFunction: simpleScore ,
   },
 
   {
     name: "vowel",
     description: "Bonus-vowels",
-    scorerFunction: Function, 
+    scoringFunction: vowelBonusScore, 
   },
    {
     name: "scrabble",
     description: "Scrabble",
-    scorerFunction: Function,
+    scoringFunction: scrabbleScore,
   }
 ];
+
+
 
 
 function scorerPrompt() {
