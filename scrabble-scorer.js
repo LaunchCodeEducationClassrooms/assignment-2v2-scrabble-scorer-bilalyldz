@@ -42,14 +42,14 @@ function initialPrompt() {
 
 //console.log(oldScrabbleScorer(initialPrompt()));
 
-function simpleScore(word){ 
+function simpleScore(word) {
   return word.length
 };
 
 //console.log(simpleScore("Bolal"));
 
 
-function vowelBonusScore(word){
+function vowelBonusScore(word) {
   let count = 0;
 
 
@@ -66,14 +66,14 @@ function vowelBonusScore(word){
 }
 //console.log(vowelBonusScore("bilal"));
 
-function scrabbleScore(word){
+function scrabbleScore(word) {
   word = word.toUpperCase();
   let points = 0;
 
   for (let i = 0; i < word.length; i++) {
     for (const pointValue in oldPointStructure) {
       if (oldPointStructure[pointValue].includes(word[i])) {
-        points += parseInt(pointValue) ;
+        points += parseInt(pointValue);
       }
     }
   }
@@ -81,28 +81,33 @@ function scrabbleScore(word){
 };
 
 
-const scoringAlgorithms = new Object([
- new Object( {
-    name: "simple",
-    description: "Simple Score",
-    scorerFunction: simpleScore,
-  }),
-  
-  new Object({
-    name: "vowel",
-    description: "Bonus-vowels",
-    scorerFunction: vowelBonusScore,
-  }),
-  new Object({
-    name: "scrabble",
-    description: "Scrabble",
-    scorerFunction: scrabbleScorer,
-  })
-]);
+// let scoringAlgorithms = new Object([
+//  new Object( {
+//     name: "simple",
+//     description: "Simple Score",
+//     scorerFunction: simpleScore,
+//   }),
+
+//   new Object({
+//     name: "vowel",
+//     description: "Bonus-vowels",
+//     scorerFunction: vowelBonusScore,
+//   }),
+//   new Object({
+//     name: "scrabble",
+//     description: "Scrabble",
+//     scorerFunction: scrabbleScorer,
+//   })
+// ]);
+let scoringAlgorithms = [
+  Object({ name: 'simple', description: 'Simple Score', scorerFunction: Function }), 
+  Object({ name: 'vowel', description: 'Bonus-vowels', scorerFunction: Function }), 
+  Object({ name: 'scrabble', description: 'Scrabble', scorerFunction: Function })
+  ]
 
 
 function scorerPrompt() {
-  const word=initialPrompt();
+  const word = initialPrompt();
   let i = 0;
   let info = scoringAlgorithms.map(
     (e) => `${i++} ${e.name} : ${e.description}`
@@ -110,25 +115,25 @@ function scorerPrompt() {
   info = info.join("\n");
   console.log(info);
   const algName = input.question("Pick Algorihm : ");
-  
+
   console.log("Algorithm name: ", scoringAlgorithms[algName].name);
   console.log("ScorerFunction result: ", scoringAlgorithms[algName].scorerFunction(word));
 
 }
 
-let newPointStructure =transform()
+let newPointStructure = transform()
 
 function transform() {
 
   const newObj = {};
   for (let i of Object.entries(oldPointStructure)) {
     for (let v of i[1]) {
-        newObj[v.toLowerCase()] = parseInt(i[0])
+      newObj[v.toLowerCase()] = parseInt(i[0])
     }
 
   }
   // console.log(newObj, 'line 132');
-  return  newObj;
+  return newObj;
 };
 
 
@@ -136,12 +141,12 @@ function transform() {
 
 
 
-function scrabbleScorer(word){
+function scrabbleScorer(word) {
   word = word.toLowerCase();
   let points = 0;
 
   for (let i of word) {
-      points += newPointStructure[i] || 0; 
+    points += newPointStructure[i] || 0;
   }
   return points;
 
