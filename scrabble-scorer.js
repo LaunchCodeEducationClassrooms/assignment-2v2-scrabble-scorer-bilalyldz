@@ -2,6 +2,7 @@
 
 const input = require("readline-sync");
 
+
 const oldPointStructure = {
   1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
   2: ['D', 'G'],
@@ -29,29 +30,126 @@ function oldScrabbleScorer(word) {
 	return letterPoints;
  }
 
+
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
 
 function initialPrompt() {
    console.log("Let's play some scrabble! Enter a word:");
+   let newWord=input.question();
+   return newWord;
 };
 
-let simpleScore;
+console.log(oldScrabbleScorer(initialPrompt()));
 
-let vowelBonusScore;
+let simpleScore= (usr) => usr.length;
 
-let scrabbleScore;
+console.log(simpleScore("Bolal"));
 
-const scoringAlgorithms = [];
 
-function scorerPrompt() {}
+let vowelBonusScore= (usrA)=>{
+let count=0;
+ 
+ 
+let vowels=["a","e","i","o","u"];
+for(let i=0; i<usrA.length; i++){
+  if(vowels.includes(usrA[i])===true){
+    count+=3;
+    continue;
+  }
+count++;
+  
+}
+return count;
+}
+ console.log(vowelBonusScore("bilal"));
 
-function transform() {};
+let scrabbleScore = (word) => {
+  word = word.toUpperCase();
+  let points = 0;
+
+  for (let i = 0; i < word.length; i++) {
+    for (const pointValue in oldPointStructure) {
+      if (oldPointStructure[pointValue].includes(word[i])) {
+        points += parseInt(pointValue);
+      }
+    }
+  }
+  return points;
+};
+
+
+const scoringAlgorithms = [
+ {
+    name: "simple",
+  description: "Simple Score",
+  scorerFunction:simpleScore,
+ },
+ {
+name:"vowel",
+description:"Bonus-vowels",
+scorerFunction:vowelBonusScore,
+ },
+ {
+name:"scrabble",
+description:"Scrabble",
+scorerFunction:scrabbleScore,
+ }
+];
+
+function scorerPrompt(a) {
+  let i =0; 
+  let info = scoringAlgorithms.map(
+    (e)=> `${i++} ${e.name} : ${e.description}`
+  );
+  info = info.join("\n");
+   console.log(info);
+  const num = input.question("Pick Algorihm : ");
+
+console.log("Algorithm name: ", scoringAlgorithms[num].name);
+console.log("ScorerFunction result: ", scoringAlgorithms[num].scorerFunction(a));
+
+}
+
+function transform() {
+
+a:1,
+e:1,
+o:1,
+u:1,
+i:1,
+l:1,
+n:1,
+r:1,
+s:1,
+t:1,
+g:2,
+d:2,
+b:3,
+c:3,
+m:3,
+p:3,
+f:4,
+h:4,
+v:4,
+w:4,
+y:4,
+k:5,
+j:8,
+x:8,
+q:10,
+z:10,
+
+
+
+};
 
 let newPointStructure;
 
 function runProgram() {
-   initialPrompt();
+  
+   scorerPrompt(initialPrompt());
+   
    
 }
 
