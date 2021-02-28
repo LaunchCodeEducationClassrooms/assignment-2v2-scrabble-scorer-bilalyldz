@@ -85,29 +85,20 @@ let scoringAlgorithms = [
  {
     name: "simple",
     description: "Simple Score",
-    scorerFunction: simpleScore ,
-  
+    scorerFunction: Function ,
   },
 
   {
     name: "vowel",
     description: "Bonus-vowels",
-    scorerFunction: vowelBonusScore,
-    scoringFunction: Function,
+    scorerFunction: Function, 
   },
-  {
+   {
     name: "scrabble",
     description: "Scrabble",
-    scorerFunction: scrabbleScorer,
-    scoringFunction: Function,
+    scorerFunction: Function,
   }
 ];
-
-jasmine.objectContaining =(scoringFunction)=>{ 
-  
-  return !!scoringAlgorithms.find(e=>e.scorerFunction ===scoringFunction)
-}
-
 
 
 function scorerPrompt() {
