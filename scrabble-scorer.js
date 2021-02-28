@@ -37,7 +37,7 @@ function oldScrabbleScorer(word) {
 function initialPrompt() {
   console.log("Let's play some scrabble! Enter a word:");
   let newWord = input.question();
-  return newWord.toUpperCase();
+  return newWord.toLowerCase();
 };
 
 //console.log(oldScrabbleScorer(initialPrompt()));
@@ -73,7 +73,7 @@ function scrabbleScore(word){
   for (let i = 0; i < word.length; i++) {
     for (const pointValue in oldPointStructure) {
       if (oldPointStructure[pointValue].includes(word[i])) {
-        points += parseInt(pointValue);
+        points += parseInt(pointValue) ;
       }
     }
   }
@@ -116,38 +116,32 @@ function scorerPrompt() {
 
 }
 
-function transform(prm) {
+let newPointStructure =transform()
+
+function transform() {
 
   const newObj = {};
-  for (let i of Object.entries(prm)) {
+  for (let i of Object.entries(oldPointStructure)) {
     for (let v of i[1]) {
-      try{ 
-        newObj[v] = parseInt(i[0])
-      } catch(err){ 
-        console.error(err);
-      }
+        newObj[v.toLowerCase()] = parseInt(i[0])
     }
 
   }
-
-  return newObj;
+  // console.log(newObj, 'line 132');
+  return  newObj;
 };
 
 
-//console.log(newObj);
-//console.log(oldPointStructure);
 
-
-let newPointStructure = transform(oldPointStructure);
 
 
 
 function scrabbleScorer(word){
-  word = word.toUpperCase();
+  word = word.toLowerCase();
   let points = 0;
 
   for (let i of word) {
-    points += newPointStructure[i] || 0;
+      points += newPointStructure[i] || 0; 
   }
   return points;
 
