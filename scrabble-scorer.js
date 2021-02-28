@@ -82,7 +82,7 @@ function scrabbleScore(word) {
 
 
 let scoringAlgorithms = [
- 
+ { scoringFunction: Function },
 {
     name: "simple",
     description: "Simple Score",
