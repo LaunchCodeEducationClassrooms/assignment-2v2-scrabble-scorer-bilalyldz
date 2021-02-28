@@ -100,9 +100,9 @@ function scrabbleScore(word) {
 //   })
 // ]);
 let scoringAlgorithms = [
-  Object({ name: 'simple', description: 'Simple Score', scorerFunction: Function }), 
-  Object({ name: 'vowel', description: 'Bonus-vowels', scorerFunction: Function }), 
-  Object({ name: 'scrabble', description: 'Scrabble', scorerFunction: Function })
+  Object({ name: 'simple', description: 'Simple Score', scoringFunction: simpleScore }), 
+  Object({ name: 'vowel', description: 'Bonus-vowels', scoringFunction: vowelBonusScore }), 
+  Object({ name: 'scrabble', description: 'Scrabble', scoringFunction: scrabbleScorer })
   ]
 
 
@@ -117,7 +117,7 @@ function scorerPrompt() {
   const algName = input.question("Pick Algorihm : ");
 
   console.log("Algorithm name: ", scoringAlgorithms[algName].name);
-  console.log("ScorerFunction result: ", scoringAlgorithms[algName].scorerFunction(word));
+  console.log("ScorerFunction result: ", scoringAlgorithms[algName].scoringFunction(word));
 
 }
 
