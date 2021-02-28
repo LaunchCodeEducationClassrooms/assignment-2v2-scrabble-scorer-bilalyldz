@@ -86,17 +86,20 @@ let scoringAlgorithms = new Object([
     name: "simple",
     description: "Simple Score",
     scorerFunction: simpleScore,
+    scoringFunction: simpleScore,
   }),
 
   new Object({
     name: "vowel",
     description: "Bonus-vowels",
     scorerFunction: vowelBonusScore,
+    scoringFunction: vowelBonusScore,
   }),
   new Object({
     name: "scrabble",
     description: "Scrabble",
     scorerFunction: scrabbleScorer,
+    scoringFunction: scrabbleScorer,
   })
 ]);
 
