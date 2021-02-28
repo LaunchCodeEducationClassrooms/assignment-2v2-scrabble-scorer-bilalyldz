@@ -82,24 +82,25 @@ function scrabbleScore(word) {
 
 
 let scoringAlgorithms = new Object([
+ 
  new Object( {
     name: "simple",
     description: "Simple Score",
     scorerFunction: simpleScore,
-    scoringFunction: simpleScore,
+    scoringFunction: Function,
   }),
 
   new Object({
     name: "vowel",
     description: "Bonus-vowels",
     scorerFunction: vowelBonusScore,
-    scoringFunction: vowelBonusScore,
+    scoringFunction: Function,
   }),
   new Object({
     name: "scrabble",
     description: "Scrabble",
     scorerFunction: scrabbleScorer,
-    scoringFunction: scrabbleScorer,
+    scoringFunction: Function,
   })
 ]);
 
@@ -169,7 +170,6 @@ module.exports = {
   scoringAlgorithms: scoringAlgorithms,
   newPointStructure: newPointStructure,
   runProgram: runProgram,
-  scorerPrompt: scorerPrompt, 
-  scoringFunction:()=>newPointStructure
+  scorerPrompt: scorerPrompt
 };
 
