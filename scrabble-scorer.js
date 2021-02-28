@@ -83,20 +83,20 @@ function scrabbleScore(word) {
 
 let scoringAlgorithms = new Object([
  
- new Object( {
+ Object( {
     name: "simple",
     description: "Simple Score",
     scorerFunction: simpleScore,
     scoringFunction: Function,
   }),
 
-  new Object({
+  Object({
     name: "vowel",
     description: "Bonus-vowels",
     scorerFunction: vowelBonusScore,
     scoringFunction: Function,
   }),
-  new Object({
+  Object({
     name: "scrabble",
     description: "Scrabble",
     scorerFunction: scrabbleScorer,
